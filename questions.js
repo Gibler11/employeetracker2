@@ -66,4 +66,4 @@ const updateEmployee= [
 ]
 
 
-module.exports= {mainMenu, questions}
+module.exports= {mainMenu, departmentQuestions, roleQuestions, employeeQuestions, updateEmployee}

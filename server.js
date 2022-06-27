@@ -1,5 +1,5 @@
-const {mainMenu, questions}= require('./questions');
-const db = require('./db/connection');
+const {mainMenu, departmentQuestions, roleQuestions, updateEmployee, employeeQuestions}= require('./questions');
+const db = require('./connection');
 const consoleTable = require('console.table');
 const inquirer = require('inquirer');
 
@@ -84,7 +84,7 @@ function addRole() {
 }
 
 function addEmployee() {
-    inquirer.prompt(updatedQuestions)
+    inquirer.prompt(employeeQuestions)
     .then(answers => {
         console.log(answers)
         db.query(`INSERT INTO role(first_name, last_name, new_employee_role, new_employee_manager) VALUES ('${answers.firsttName}', ${answers.lastName}', ${answers.newEmployeeRole},${answers.newEmpyeeManager})`, function (err, results){
