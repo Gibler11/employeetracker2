@@ -57,7 +57,7 @@ const employeeQuestions= [
     }
 ]
 
-const updateEmployee= [
+const updateEmployeePrompt= [
     {
         type:'input',
         message:'What employee will update?',
@@ -66,4 +66,4 @@ const updateEmployee= [
 ]
 
 
-module.exports= {mainMenu, departmentQuestions, roleQuestions, employeeQuestions, updateEmployee}
+module.exports= {mainMenu, departmentQuestions, roleQuestions, employeeQuestions, updateEmployeePrompt}

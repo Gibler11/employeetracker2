@@ -1,7 +1,8 @@
-const {mainMenu, departmentQuestions, roleQuestions, updateEmployee, employeeQuestions}= require('./questions');
+const {mainMenu, departmentQuestions, roleQuestions, updateEmployeePrompt, employeeQuestions}= require('./questions');
 const db = require('./connection');
 const consoleTable = require('console.table');
 const inquirer = require('inquirer');
+const { Console } = require('console');
 
 
 
@@ -53,10 +54,14 @@ function viewAllRoles(){
     allChoices()
 }
 function viewAllEmployees(){
+    console.log ("hello")
     db.query('SELECT* FROM employee', function(err, results){
+        console.log (err)
         console.log('\n');
         console.table(results);
+        
     });
+}
     allChoices()
 
 function addDep(){ 
@@ -87,7 +92,7 @@ function addEmployee() {
     inquirer.prompt(employeeQuestions)
     .then(answers => {
         console.log(answers)
-        db.query(`INSERT INTO role(first_name, last_name, new_employee_role, new_employee_manager) VALUES ('${answers.firsttName}', ${answers.lastName}', ${answers.newEmployeeRole},${answers.newEmpyeeManager})`, function (err, results){
+        db.query(`INSERT INTO role(first_name, last_name, new_employee_role, new_employee_manager) VALUES ('${answers.first_name}', ${answers.last_name})`, function (err, results){
             console.log(`\n`);
             console.log(`${answers.firstName} ${answers.lastName} added to list of employees`)
         })
@@ -95,9 +100,21 @@ function addEmployee() {
 
 }
 
+// function updateEmployee() {
+//     inquirer.prompt(updateEmployee)
+//     .then(answers=> {
+//         console.log(answers)
+//         db.query('SELECT* FROM employee', function(err, results){
+//             console.log('\n');
+//             console.table(results);
+//             console.log(results);
+//         })
+//     })
+//     }
 function updateEmployee() {
-    inquirer.prompt(updateEmployee)
-    .then(answers=> {
+    {
+        inquirer.prompt(updateEmployeePrompt)
+        .then(answers=>{
         console.log(answers)
         db.query('UPDATE employee SET(first_name, last_name, employee_id, manager_id) WHERE', function (err, results){
             console.log(`\n`);
